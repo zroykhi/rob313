@@ -43,17 +43,26 @@ function H = homography2d(varargin)
     
     % TODO : Create matrix A
     
-    % A= ...
+    num_points = length(x1);
+    A= ones(3*num_points, 9);
+    for i=1:num_points
+        O = [0 0 0];
+        X = x1(:,i)';
+        x = x2(1, i), w = x2(3, i), y = x2(2, i);
+        A(3*i-2, :) = [O   -w*X   y*X];
+        A(3*i-1, :) = [w*X   O   -x*X];
+        A(3*i, :)   = [-y*X  x*X    O];
+    end
     
     
     
     % TODO : perform SVD
-    
+    [U, S, V] = svd(A, 0)
     
     
     % TODO : Extract homography from SVD result
 
-    % H=...
+    H = reshape(V(:,9),3,3)';
     
     
     
