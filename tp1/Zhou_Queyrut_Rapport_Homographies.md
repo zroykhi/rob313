@@ -5,7 +5,7 @@ TP1 - Estimation d'homographies et reconstruction de panoramas
 Zhi Zhou, <zhi.zhou@ensta-paris.fr>
  Simon Queyrut,  <simon.queyrut@ensta-paris.fr>
  
- [@zroykhi](https://github.com/zroykhi), [@queyrusi][github] 
+ [@zroykhi](https://github.com/zroykhi) (repo source), [@queyrusi][github] 
 
 [github]: http://github.com/queyrusi
 
@@ -31,16 +31,28 @@ Nous appelons `homography2d`  et affichons l'image résultante :
 
 Question 2
 ------
-Nous augmentons le nombre de points utilisés pour calculer la matrice de transformation. Nous pouvons voir que plus nous utilisons de points, plus l'image est précise après la fusion. Selon **RANSAC**, plus nous utilisons d'échantillons, moins il y a de chance que tous les échantillons soient mauvais, donc le résultat sera plus précis.
+Dans cette question nous allons coudre ce panorama :
+![](https://markdown.data-ensta.fr/uploads/upload_4d7a98bfbc14db9391d0eb1f49d6914e.png)
++ Nous sélectionnons 4 points dans la photo de droite mis dans `PtO` et nous repérons les points correspondants dans la photo du milieu pour les mettre dans`PtD` :
 
-4 points  |  8 points | 13 points
-:-------------------------:|:-------------------------:|:-------------------------:
-![alt text](Panorama_TP/Amst-4-points.jpg)  | ![alt text](Panorama_TP/Amst-8-points.jpg) | ![alt text](Panorama_TP/Amst-13-points.jpg)
 
-Enfin, nous utilisons 10 autres points pour fusionner les 3 images ensemble, et le résultat est illustré ci-dessous. 
+![](https://markdown.data-ensta.fr/uploads/upload_566b801a38b920f2990f88cd472c7151.png)
 
-Fusion de 3 images |
-:--------------------------:
-![](Panorama_TP/Amst-1-2-3.jpg)
+Cela permet de résoudre le problème d'estimation et trouver `H1`, l'homographie liant ces deux plans avec la question précédente. 
++ Nous faisons un *warp* de la première photo (tout à droite) avec `H1` et une boîte noire de dimensions `[-1500 500 -100 500]` (nous laissons de la place pour la troisième image)
++  *warp* de la deuxième photo (photo du milieu) avec une homographie `H2` (qui est en réalité une identité) avec cette même boîte.  
++ Nous fusionnons ces deux boîtes : `im_fused = max(im1,im2)`
+![](https://markdown.data-ensta.fr/uploads/upload_7479251b7eca08bb5f003681818f823c.png)
 
-On voit que la qualité de l'image est assez bonne.
++ Nous répétons le processus de couture avec la troisième et dernière image (celle tout à gauche) mais en prenant le panorama obtenu plus ci-dessus et avec une boîte de taille `[-1000 1000 -100 500]`
+
+![](https://markdown.data-ensta.fr/uploads/upload_00c7ee5c1111245f6600ef934d20ccf2.png)
+
+![](https://markdown.data-ensta.fr/uploads/upload_ce835e723cf0ce9b984a5143c5bc8b82.png)
+
+
+
+
+
+
+
