@@ -31,3 +31,16 @@ Nous appelons `homography2d`  et affichons l'image résultante :
 
 Question 2
 ------
+Nous augmentons le nombre de points utilisés pour calculer la matrice de transformation. Nous pouvons voir que plus nous utilisons de points, plus l'image est précise après la fusion. Selon **RANSAC**, plus nous utilisons d'échantillons, moins il y a de chance que tous les échantillons soient mauvais, donc le résultat sera plus précis.
+
+4 points  |  8 points | 13 points
+:-------------------------:|:-------------------------:|:-------------------------:
+![alt text](Panorama_TP/Amst-4-points.jpg)  | ![alt text](Panorama_TP/Amst-8-points.jpg) | ![alt text](Panorama_TP/Amst-13-points.jpg)
+
+Enfin, nous utilisons 10 autres points pour fusionner les 3 images ensemble, et le résultat est illustré ci-dessous. 
+
+Fusion de 3 images |
+:--------------------------:
+![](Panorama_TP/Amst-1-2-3.jpg)
+
+On voit que la qualité de l'image est assez bonne.
