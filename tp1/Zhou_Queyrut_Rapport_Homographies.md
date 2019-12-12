@@ -42,14 +42,19 @@ Cela permet de résoudre le problème d'estimation et trouver `H1`, l'homographi
 + Nous faisons un *warp* de la première photo (tout à droite) avec `H1` et une boîte noire de dimensions `[-1500 500 -100 500]` (nous laissons de la place pour la troisième image)
 +  *warp* de la deuxième photo (photo du milieu) avec une homographie `H2` (qui est en réalité une identité) avec cette même boîte.  
 + Nous fusionnons ces deux boîtes : `im_fused = max(im1,im2)`
-![](https://markdown.data-ensta.fr/uploads/upload_7479251b7eca08bb5f003681818f823c.png)
++ Nous augmentons le nombre de points utilisés pour calculer la matrice de transformation. Nous pouvons voir que plus nous utilisons de points, plus l'image est précise après la fusion. Selon **RANSAC**, plus nous utilisons d'échantillons, moins il y a de chance que tous les échantillons soient mauvais, donc le résultat sera plus précis.
 
-+ Nous répétons le processus de couture avec la troisième et dernière image (celle tout à gauche) mais en prenant le panorama obtenu plus ci-dessus et avec une boîte de taille `[-1000 1000 -100 500]`
+4 points  |  8 points | 13 points
+:-------------------------:|:-------------------------:|:-------------------------:
+![alt text](Panorama_TP/Amst-4-points.jpg)  | ![alt text](Panorama_TP/Amst-8-points.jpg) | ![alt text](Panorama_TP/Amst-13-points.jpg)
 
-![](https://markdown.data-ensta.fr/uploads/upload_00c7ee5c1111245f6600ef934d20ccf2.png)
++ Nous répétons le processus de couture avec la troisième et dernière image (celle tout à gauche) mais en prenant le panorama obtenu plus ci-dessus et avec une boîte de taille `[-1000 1000 -100 500]`. Enfin, nous utilisons 10 autres points pour fusionner les 3 images ensemble, et le résultat est illustré ci-dessous. 
 
-![](https://markdown.data-ensta.fr/uploads/upload_ce835e723cf0ce9b984a5143c5bc8b82.png)
+Fusion de 3 images |
+:--------------------------:
+![](Panorama_TP/Amst-1-2-3.jpg)
 
+On voit que la qualité de l'image est assez bonne.
 
 
 
