@@ -124,11 +124,9 @@ while(1):
 		gray_query_img = cv2.cvtColor(frame, cv2.COLOR_BGR2GRAY)
 		accumulator = accumulate_gradients(r_table, gray_query_img)
 		# Q4 
-		m = n_max(accumulator, 1)
-		# print(m)
-		# print(accumulator)
-		y_point = [pt[1][0] for pt in m][0]
-		x_point = [pt[1][1] for pt in m][0]
+		# m = n_max(accumulator, 1)
+		# y_point = [pt[1][0] for pt in m][0]
+		# x_point = [pt[1][1] for pt in m][0]
 		# print("max voting is: ", accumulator.max())
 		# frame_tracked = cv2.rectangle(frame, (int(x_point-h/2),int(y_point-w/2)), (int(x_point+h/2),int(y_point+w/2)), (255,0,0) ,2)
 
